@@ -1,4 +1,5 @@
 import 'package:api_with_getx/view/home/home_screen.dart';
+import 'package:api_with_getx/view/home_two/home_two.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

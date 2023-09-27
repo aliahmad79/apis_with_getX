@@ -1,12 +1,10 @@
+import 'package:api_with_getx/constant/constant.dart';
 import 'package:api_with_getx/model/product_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:api_with_getx/services/http_service/http_services.dart';
 
-class RemoteServices {
-  static var client = http.Client();
-
+class HomeRepo {
   static Future<List<Product>?> fetchProducts() async {
-    var response = await client.get(Uri.parse(
-        "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"));
+    var response = await HttpServices.get(AppConstant.endPoint);
 
     if (response.statusCode == 200) {
       var jsonString = response.body;
