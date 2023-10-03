@@ -24,4 +24,13 @@ class ProductController extends GetxController {
       isLoading(false);
     }
   }
+
+  void createProduct(Map<String, dynamic> productData) async {
+    try {
+      isLoading(true);
+      var data = await HomeRepo.postData(productData);
+    } finally {
+      isLoading(false);
+    }
+  }
 }

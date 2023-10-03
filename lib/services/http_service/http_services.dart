@@ -1,5 +1,6 @@
+import 'dart:convert';
+
 import 'package:api_with_getx/constant/constant.dart';
-import 'package:api_with_getx/model/product_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -13,6 +14,22 @@ class HttpServices {
       return response;
     } catch (e) {
       throw e;
+    }
+  }
+
+  static Future<Response> post(String endpoint,
+      {Map<String, dynamic>? data}) async {
+    try {
+      final response = await client.post(
+        Uri.parse(endpoint),
+        body: jsonEncode(data),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      return response;
+    } catch (e) {
+      rethrow;
     }
   }
 

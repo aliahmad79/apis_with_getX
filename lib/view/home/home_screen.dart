@@ -1,5 +1,6 @@
 import 'package:api_with_getx/controller/product_controller.dart';
 import 'package:api_with_getx/view/home/widgets/product_shimmer.dart';
+import 'package:api_with_getx/view/post_data/create_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Home Products"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => CreateData());
+              },
+              icon: Icon(Icons.forest)),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),

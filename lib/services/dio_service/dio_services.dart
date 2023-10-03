@@ -8,7 +8,10 @@ class DioClientServices {
     _dio
       ..options.baseUrl = AppConstant.baseUrl
       ..options.connectTimeout = const Duration(seconds: 30)
-      ..options.receiveTimeout = const Duration(seconds: 30);
+      ..options.receiveTimeout = const Duration(seconds: 30)
+      ..options.headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
   }
 
   Future<Response> get(String endpoint,

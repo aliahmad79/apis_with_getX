@@ -13,4 +13,22 @@ class HomeRepo {
       return null;
     }
   }
+
+  Future postProduct(Map<String, dynamic> productData) async {
+    final response = await HttpServices.post('/products',
+        data: productData); // Replace with your API endpoint
+    return response;
+  }
+
+  static Future postData(Map<String, dynamic> productData) async {
+    var response = await HttpServices.post("https://reqres.in/api/users",
+        data: productData);
+    if (response.statusCode == 201) {
+      print(response.body.toString());
+      print("data successfully created");
+      return response;
+    } else {
+      return null;
+    }
+  }
 }
