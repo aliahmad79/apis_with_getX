@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:api_with_getx/constant/constant.dart';
+import 'package:api_with_getx/services/exceptions/app_exceptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -11,7 +13,8 @@ class HttpServices {
     try {
       final response =
           await client.get(Uri.parse(AppConstant.baseUrl + endPoint));
-      return response;
+      // return response;
+      return returnResponse(response);
     } catch (e) {
       throw e;
     }
@@ -44,4 +47,24 @@ class HttpServices {
   //     return null;
   //   }
   // }
+
+  static dynamic returnResponse(response) {
+    // dynamic data = jsonDecode(response.body);
+    log(response.statusCode.toString());
+    switch (response.statusCode) {
+      case 200:
+        return response; // Return the parsed JSON data.
+      case 400:
+        throw BadRequestException(["errors"].toString());
+      case 401:
+        throw UnauthorizedException("Unauthorized");
+      case 403:
+        throw ForbiddenException("Credentials do not match");
+      case 404:
+        throw NotFoundException("Not found");
+      default:
+        throw FetchDataException(
+            "Error occurred while communicating with the server with status code ${response.statusCode.toString()}");
+    }
+  }
 }

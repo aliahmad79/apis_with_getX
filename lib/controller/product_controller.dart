@@ -16,7 +16,7 @@ class ProductController extends GetxController {
   void fetchProduct() async {
     try {
       isLoading(true);
-      var data = await HomeRepo.fetchProducts();
+      dynamic data = await HomeRepo.fetchProducts();
       if (data != null) {
         productList.value = data;
       }
